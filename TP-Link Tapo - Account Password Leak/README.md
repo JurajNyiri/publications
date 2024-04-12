@@ -94,3 +94,5 @@ TBD
 # Timeline
 - 05.11.2023 - Reported to TP-Link Technical Support
 - 07.11.2023 - Received response from TP-Link
+- 10.11.2023 - TP-Link confirms the vulnerability
+- 11.04.2024 - TP-Link confirms fix for the vulnerability is ready
