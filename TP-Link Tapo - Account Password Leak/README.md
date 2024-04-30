@@ -1,6 +1,6 @@
 # Summary
 
-- **CVE ID**: TBD
+- **CVE ID**: CVE-2024-33205
 - **Affected Product**: TP-Link Tapo TC60, TC70, C100, C110, C120, C200, C210, C220, C225, C310, C320WS, C500, C510W, C520WS
 - **Affected Version**: 1.3.9 Build 231019 - 1.3.13 Build 240327
 - **Vulnerability Name**: TP-Link password hash leaked in auth request allowing attacker to gain full access to victims TP-Link account
