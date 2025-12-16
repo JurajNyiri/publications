@@ -1,6 +1,7 @@
 # Summary
 
 - **CVE ID**: [CVE-2025-14553](https://www.cve.org/cverecord?id=CVE-2025-14553)
+- **Security Advisory**: [Security Advisory on Password Hash Leak Could Lead to Unauthorized Access on Tapo C210 via Local Network](https://www.tp-link.com/us/support/faq/4840/)
 - **Affected Product**: TP-Link Tapo TC60, TC70, C100, C110, C120, C200, C210, C220, C225, C310, C320WS, C500, C510W, C520WS
 - **Affected Version**: 1.3.9 Build 231019 - 1.3.13 Build 240327
 - **Vulnerability Name**: Password Hash Leak Could Lead to Unauthorized Access on Tapo 210 via Local Network
