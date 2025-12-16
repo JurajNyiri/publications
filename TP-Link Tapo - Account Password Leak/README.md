@@ -1,11 +1,11 @@
 # Summary
 
-- **CVE ID**: CVE-2024-33205
+- **CVE ID**: [CVE-2025-14553](https://www.cve.org/cverecord?id=CVE-2025-14553)
 - **Affected Product**: TP-Link Tapo TC60, TC70, C100, C110, C120, C200, C210, C220, C225, C310, C320WS, C500, C510W, C520WS
 - **Affected Version**: 1.3.9 Build 231019 - 1.3.13 Build 240327
-- **Vulnerability Name**: TP-Link password hash leaked in auth request allowing attacker to gain full access to victims TP-Link account
+- **Vulnerability Name**: Password Hash Leak Could Lead to Unauthorized Access on Tapo 210 via Local Network
 - **Vulnerability Type**: Brute Force Attack on Leaked SHA256 Hash
-- **Vulnerability Severity Score** TBD
+- **Vulnerability Severity Score** 7.0 (High)
 - **VDP**: https://www.tp-link.com/us/press/security-advisory/
 - **Researcher**: Juraj Nyíri
 - **Date Reported**: 5 Nov 2023
@@ -13,15 +13,13 @@
 ------------------------------
 # Description
 
-The new authorization introduced in Firmware 1.3.9 for many different Tapo cameras leaks SHA256 Hash of TP-Link Account, which after cracking locally allows for a full control of the camera including access to stream, recordings, any other Tapo camera settings and lastly the full TP-Link account providing full access to any other Tapo or TP-Link devices through cloud. 
+The authorization introduced in Firmware 1.3.9 for many different Tapo cameras leaks SHA256 Hash of TP-Link Account, which after cracking locally allows for a full control of the camera including access to stream, recordings, any other Tapo camera settings and lastly the full TP-Link account providing full access to any other Tapo or TP-Link devices through cloud. 
 Sending a request for authorization causes the camera to respond with the device_confirm key, containing the SHA256 hash of the victims account. In order to send this request, attacker needs to have access to the camera network port 443.
 
 ------------------------------
 # Proof Of Concept
 
 Connection / Authentication is initiated with the camera by sending request: `{"method": "login", "params": {"encrypt_type": "3", "username": “admin"}}`. 
-
-Todo: Add picture
 
 Camera responds with an object containing `device_confirm` and `nonce` keys. `device_confirm` value is a combination of SHA256 hash of TP-Link password and the `nonce` value. Attacker can save this `device_confirm` key and then initiate local brute-force attack to discover the clear password and gain access to full control of the camera as well as the whole TP-Link account of the victim. 
 
@@ -80,14 +78,13 @@ while not foundPassword:
 ```
 
 ----------------------------
-# Recommendation Remediation
+# Remediation
 
-TBD
+A cloud token is issued automatically for each user's device, when the device connects to the cloud, unless TPLink account has Third Party Compatibility turned on.
 
 # Reference:
-- MITRE: TBD
-- NVD: TBD
-- TP-Link Tapo C100: TBD
+- TPLink security advisory: https://www.tp-link.com/us/support/faq/4840/
+- CVE: https://www.cve.org/cverecord?id=CVE-2025-14553
 
 ---------------------------
 # Timeline
@@ -95,3 +92,5 @@ TBD
 - 07.11.2023 - Received response from TP-Link
 - 10.11.2023 - TP-Link confirms the vulnerability
 - 11.04.2024 - TP-Link confirms fix for the vulnerability is ready
+- 13.12.2024 - TP-Link deploys an ability to turn on 3rd party compatibility, allowing external applications to work with Tapo devices again ([read more](https://github.com/JurajNyiri/HomeAssistant-Tapo-Control/releases/tag/6.0.0))
+- 16.12.2025 - TP-Link publishes CVE and security advisory
